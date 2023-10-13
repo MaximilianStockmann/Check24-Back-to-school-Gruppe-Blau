@@ -1,35 +1,40 @@
-import fetch from "node-fetch";
 import OpenAI from "openai";
+import path from "path";
+import fs from "fs";
+import { fileURLToPath } from 'url';
 
-function sendRequest(url, payload) {
-  const apiKey = process.env.API_KEY;
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = path.dirname(__filename);
 
-  fetch(url, {
-    method: "POST",
-    headers: {
-      "Content-Type": "application/json",
-      "Authorization": `Bearer ${apiKey}`
-    },
-    body: JSON.stringify(payload)
-  })  
-}
-
-/* fetch("https://www.google.de", {
-  method: "GET",
-  headers: {
-    "Content-Type": "application/json"
-  },
-}).then((response) => {
-  console.log(response);
-}) */
 
 const openai = new OpenAI({
-  apiKey: "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",
+  apiKey: "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",
 });
 
+const roleInformation = "Du bist ein ChatBot, der Informationen zu Produkten im Möbelsortiment von Check24 ausgeben soll. Dir werden Informationen zu den einzelnen Produkten geschickt, die dir beim beantworten der Fragen helfen.";
+
+const data = readJSONFile(path.resolve(__dirname, "./dataset-shopping.json"));
+
+console.log("First data element: ", data[0]);
+
+function getProductByCsin(csin) {
+  const product = data.filter((element) => element.product_csin == csin);
+  console.log(product)
+  return product
+}
+
 const chatCompletion = await openai.chat.completions.create({
-  messages: [{ role: "user", content: "Say this is a test" }],
-  model: "gpt-3.5-turbo",
+  messages: [
+    {role: "system", content: roleInformation},
+    {role: "user", content: "Hier sind einige Infos über das Produkt: " + JSON.stringify(getProductByCsin("4E0878B5768A79"))},
+    {role: "user", content: "Bitte "}
+],
+  model: "gpt-3.5-turbo-16k",
 });
 
 console.log(chatCompletion.choices[0].message.content);
+
+function readJSONFile(filename) {
+  let result = JSON.parse(fs.readFileSync(filename, 'utf-8'));
+  return result;
+}

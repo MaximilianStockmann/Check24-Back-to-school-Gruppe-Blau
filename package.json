@@ -17,6 +17,7 @@
   },
   "homepage": "https://github.com/MaximilianStockmann/Check24-Back-to-school-Gruppe-Blau#readme",
   "dependencies": {
+    "fs": "^0.0.1-security",
     "node-fetch": "^3.3.2",
     "openai": "^4.12.1"
   },
