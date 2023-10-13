@@ -15,5 +15,10 @@
   "bugs": {
     "url": "https://github.com/MaximilianStockmann/Check24-Back-to-school-Gruppe-Blau/issues"
   },
-  "homepage": "https://github.com/MaximilianStockmann/Check24-Back-to-school-Gruppe-Blau#readme"
+  "homepage": "https://github.com/MaximilianStockmann/Check24-Back-to-school-Gruppe-Blau#readme",
+  "dependencies": {
+    "node-fetch": "^3.3.2",
+    "openai": "^4.12.1"
+  },
+  "type": "module"
 }
