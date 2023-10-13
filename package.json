@@ -1,0 +1,19 @@
+{
+  "name": "check24-back-to-school-gruppe-blau",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/MaximilianStockmann/Check24-Back-to-school-Gruppe-Blau.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/MaximilianStockmann/Check24-Back-to-school-Gruppe-Blau/issues"
+  },
+  "homepage": "https://github.com/MaximilianStockmann/Check24-Back-to-school-Gruppe-Blau#readme"
+}
